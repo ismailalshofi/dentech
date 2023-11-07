@@ -3,11 +3,11 @@ import '../../configure_di.dart';
 import '../../app_store/app_store.dart';
 
 extension IntExtensions on int {
-  int validate({int value = 0}) => this ?? value;
-  bool isSuccessful() => this! >= 200 && this! <= 206;
+  int validate({int value = 0}) => this;
+  bool isSuccessful() => this >= 200 && this <= 206;
 
-  Widget get height => SizedBox(height: this?.toDouble());
-  Widget get width => SizedBox(width: this?.toDouble());
+  Widget get height => SizedBox(height: toDouble());
+  Widget get width => SizedBox(width: toDouble());
 
   Duration get microseconds => Duration(microseconds: validate());
   Duration get milliseconds => Duration(milliseconds: validate());
@@ -23,6 +23,6 @@ extension IntExtensions on int {
 
 
   double get sp =>
-      ((getIt<AppStore>().width * getIt<AppStore>().height) * this!) /
+      ((getIt<AppStore>().width * getIt<AppStore>().height) * this) /
           (getIt<AppStore>().defaultHeight * getIt<AppStore>().defaultWidth);
 }

@@ -1,10 +1,10 @@
+import 'package:dentech/core/utils/common.dart';
 import 'package:dentech/core/utils/extensions/context_extensions.dart';
 import 'package:dentech/core/utils/extensions/int_extensions.dart';
 import 'package:dentech/core/utils/extensions/widget_extensions.dart';
-import 'package:dentech/core/utils/sizer.dart';
 import 'package:dentech/core/values/values.dart';
 import 'package:dentech/core/widgets/empty_widget.dart';
-import 'package:dentech/screens/home_screen.dart';
+import 'package:dentech/screens/root_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _submitButton() {
     return InkWell(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+        Navigator.push(context, buildPageRoute(const RootApp(), PageRouteAnimation.Slide, 300.milliseconds));
       },
       child: Container(
         height: 45.h,

@@ -1,7 +1,10 @@
+import 'package:dentech/core/utils/common.dart';
 import 'package:dentech/core/utils/extensions/context_extensions.dart';
 import 'package:dentech/core/utils/extensions/int_extensions.dart';
 import 'package:dentech/core/utils/extensions/widget_extensions.dart';
 import 'package:dentech/core/values/values.dart';
+import 'package:dentech/screens/add_visit_screen.dart';
+import 'package:dentech/screens/profile_screen.dart';
 import 'package:dentech/widgets/visit_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -93,11 +96,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
-      appBar: _appBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            welcomeWidget(),
+            welcomeWidget(context),
             const Empty().withHeight(15.h),
             _searchField().animate().fadeIn(duration: 400.milliseconds),
             const Empty().withHeight(20.h),
@@ -111,65 +113,74 @@ class HomeScreen extends StatelessWidget {
           ],
         ).paddingAll(10),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              buildPageRoute(const AddVisitScreen(), PageRouteAnimation.Slide,
+                  300.milliseconds));
+        },
+        backgroundColor: AppColors.blue,
+        child: const Icon(Icons.add_card_rounded),
+      ),
     );
   }
 
-  AppBar _appBar() {
-    return AppBar(
-      backgroundColor: AppColors.white,
-      elevation: 0.0,
-      leading: const Icon(Icons.menu_rounded, color: AppColors.darkBlue),
-     
-    );
-  }
-
-  Widget welcomeWidget(){
+  Widget welcomeWidget(BuildContext context) {
     return Align(
-          alignment: Alignment.centerLeft,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
+      alignment: Alignment.centerLeft,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Welcome,",
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.darkBlue.withOpacity(0.7),
-                    ),
-                  ),
-                  Text(
-                    "Dr. Omran",
-                    style: TextStyle(
-                      fontSize: 25.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.darkBlue,
-                    ),
-                  ),
-                ],
+              Text(
+                "Welcome,",
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.darkBlue.withOpacity(0.7),
+                ),
               ),
-              Container(
-                height: 50.h,
-                width: 50.w,
-                decoration: BoxDecoration(
-                    color: AppColors.silver,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        offset: const Offset(0, 5),
-                        color: AppColors.black.withOpacity(0.2),
-                        blurRadius: 5,
-                      )
-                    ]),
-                child: SvgPicture.asset('assets/icons/profile.svg').paddingAll(15),
-                
+              Text(
+                "Dr. Omran",
+                style: TextStyle(
+                  fontSize: 25.sp,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.darkBlue,
+                ),
               ),
             ],
-          ).paddingSymmetric(horizontal: 5),
-        );
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  buildPageRoute(ProfileScreen(), PageRouteAnimation.Slide,
+                      300.milliseconds));
+            },
+            child: Container(
+              height: 50.h,
+              width: 50.w,
+              decoration: BoxDecoration(
+                  color: AppColors.silver,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      offset: const Offset(0, 5),
+                      color: AppColors.black.withOpacity(0.2),
+                      blurRadius: 5,
+                    )
+                  ]),
+              child:
+                  SvgPicture.asset('assets/icons/profile.svg').paddingAll(15),
+            ),
+          ),
+        ],
+      ).paddingSymmetric(horizontal: 5),
+    );
   }
 
   Widget _searchField() {
@@ -286,7 +297,7 @@ class HomeScreen extends StatelessWidget {
             children: List.generate(
               visits.length,
               (index) => VisitCard(
-                data : visits[index],
+                data: visits[index],
               ),
             ),
           ),

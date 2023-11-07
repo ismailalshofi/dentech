@@ -2,10 +2,8 @@ import 'package:dentech/core/utils/extensions/context_extensions.dart';
 import 'package:dentech/core/utils/extensions/int_extensions.dart';
 import 'package:dentech/core/utils/extensions/widget_extensions.dart';
 import 'package:dentech/core/values/values.dart';
-import 'package:dentech/core/widgets/empty_widget.dart';
 import 'package:dentech/widgets/visit_info.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class VisitCard extends StatefulWidget {
