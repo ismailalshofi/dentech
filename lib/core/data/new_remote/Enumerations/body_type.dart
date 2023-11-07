@@ -1,0 +1,1 @@
+enum BodyType { json, formData}
