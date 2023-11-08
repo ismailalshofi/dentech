@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class Printer {
-  static void print(String text) {
+  static void printl(String text) {
     if (kDebugMode) {
 
     }

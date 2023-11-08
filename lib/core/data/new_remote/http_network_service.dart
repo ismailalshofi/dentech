@@ -26,7 +26,7 @@ class HttpNetworkService extends NetworkService {
       {
         jsonEncode(body);
       }
-      Printer.print(url.toString());
+      Printer.printl(url.toString());
 
       Response response;
       switch (method) {
@@ -52,7 +52,7 @@ class HttpNetworkService extends NetworkService {
           response = await get(url, headers: headers);
       }
       
-      Printer.print('Response (${method.name.toString()}) ${response.statusCode.toString()}:==> ${response.body.toString()}');
+      Printer.printl('Response (${method.name.toString()}) ${response.statusCode.toString()}:==> ${response.body.toString()}');
       
     ResponseHandler.handleResponse<ResponseModel>(
       response,

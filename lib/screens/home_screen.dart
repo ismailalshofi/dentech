@@ -102,10 +102,10 @@ class HomeScreen extends StatelessWidget {
             welcomeWidget(context),
             const Empty().withHeight(15.h),
             _searchField().animate().fadeIn(duration: 400.milliseconds),
-            const Empty().withHeight(20.h),
-            _categories()
-                .animate(delay: 400.milliseconds)
-                .fadeIn(duration: 400.milliseconds),
+            // const Empty().withHeight(20.h),
+            // _categories()
+            //     .animate(delay: 400.milliseconds)
+            //     .fadeIn(duration: 400.milliseconds),
             const Empty().withHeight(20.h),
             _recentVisitsWidget()
                 .animate(delay: 700.milliseconds)

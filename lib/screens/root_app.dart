@@ -32,7 +32,7 @@ class _RootAppState extends State<RootApp> {
             builder: (context) => HomeScreen(),
           ),
         ),
-        
+        bottomNavigationBar: _bottomBar(),
       ),
     );
   }
@@ -47,7 +47,7 @@ class _RootAppState extends State<RootApp> {
 
   Widget _bottomBar() {
     return CurvedNavigationBar(
-      height: 60.h,
+    
       index: _screenIndex,
       onTap: (idx) => setState(() {
         _screenIndex = idx;
